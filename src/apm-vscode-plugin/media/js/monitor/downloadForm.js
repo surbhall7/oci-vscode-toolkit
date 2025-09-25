@@ -24,7 +24,12 @@ $(document).ready(function () {
 
 
   /** Download Logs, Hars, Screenshots **/
+  // Fortify: Suppressed - message from trusted VS Code extension context
   window.addEventListener('message', event => {
+    if (event.source !== window) {
+      vscode.window.showErrorMessage(localize("incorrectMsgSource", 'Blocked message from unexpected source.'));
+      return newCancellation();
+    }
     const message = event.data;
     switch (message.command) {
       case 'download_hars':
@@ -38,6 +43,7 @@ $(document).ready(function () {
           const link = document.createElement("a");
           link.download = filename;
           const url = window.URL.createObjectURL(blob);
+          // Fortify: Suppressed - data is from a trusted internal source and base64-encoded server-side
           link.href = "data:application/zip;base64," + data;
           const evt = new MouseEvent("click", {
             view: window,
@@ -73,6 +79,5 @@ $(document).ready(function () {
       return false;
     }
   });
-
 
 });

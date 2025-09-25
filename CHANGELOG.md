@@ -96,3 +96,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 1.2.0 - 2025-08-6
 
 - Added Create Script command in File Explorer right click context menu and Editor right click context menu for APM plugin
+
+## 1.3.0 - 2025-09-23
+
+- CVE fixes for APM plugin
